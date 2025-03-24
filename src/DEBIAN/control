@@ -1,0 +1,7 @@
+Package: counter
+Version: 1.0-1
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Alexa Williams <awilliams19@zagmail.gonzaga.edu>
+Description: this is a counter service that writes the date and time every second

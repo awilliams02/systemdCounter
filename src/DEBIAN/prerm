@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+echo "Running preremove"
+
+if systemctl is-active --quiet counter.service; then
+    systemctl stop counter.service
+fi
+
+echo "Preremove complete!"

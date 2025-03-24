@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+/usr/local/bin/install.sh
+
+echo "Running post install"
+
+adduser --system count
+systemctl daemon-reload
+systemctl enable counter
+systemctl start counter
+
+echo "Post install complete!"

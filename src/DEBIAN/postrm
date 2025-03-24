@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e  # Exit on errors
+
+if systemctl is-active --quiet counter.service; then
+    systemctl stop counter.service
+else
+    echo "Warning: counter.service is not running. Skipping stop."
+fi
+
+if systemctl is-enabled --quiet counter.service; then
+    systemctl disable counter.service
+fi
+
+if id "count" >/dev/null 2>&1; then
+    userdel count
+    echo "User 'count' deleted."
+else
+    echo "User 'count' does not exist. Skipping deletion."
+fi
+
+systemctl daemon-reload
+
+rm -f /etc/systemd/system/counter.service
+rm -f /usr/local/bin/counter.py
+rm -f /tmp/currentCount.out
